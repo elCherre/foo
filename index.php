@@ -24,7 +24,7 @@
     ?>
     <script>
     $(function(){
-        $("p:2").click(function(){
+        $("p").click(function(){
             $(this).hide();
         });
     });
