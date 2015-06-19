@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>la wea</title>
+    <title>Index</title>
     <!-- CSS -->
     <?php 
         include "nah/includes/css.php";
@@ -14,7 +14,7 @@
         $x = 1;
         while($x < 10)
         {
-            echo "<p>Ninja <i class='fa fa-eye'></i></p>";
+            echo "<p>Ninja ".$x." <i class='fa fa-eye'></i></p>";
             $x++;
         }
     ?>
@@ -23,8 +23,8 @@
         include "nah/includes/js.php";
     ?>
     <script>
-    $(document).ready(function(){
-        $("p").click(function(){
+    $(function(){
+        $("p:2").click(function(){
             $(this).hide();
         });
     });
