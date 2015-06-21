@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Index</title>
     <!-- CSS -->
     <?php 
@@ -13,13 +14,14 @@
 <div class="container">
     <div class="jumbotron">
     <div class="row">
+        <h3>AJAX form</h3>
         <form action="/" method="post">
             <div class="form-group">
-                <label for="insname">Email address</label>
-                <input type="text" class="form-control" id="insname" placeholder="Your name">
+                <label for="insname">Your name</label>
+                <input type="text" class="form-control onlytext" id="insname" placeholder="Your name">
             </div>
             <div class="form-group">
-                <label for="inssurname">Email address</label>
+                <label for="inssurname">Your surname</label>
                 <input type="text" class="form-control" id="inssurname" placeholder="Your surname">
             </div>
             
@@ -35,8 +37,7 @@
     <script>
     $(function(){
         // NULL VALIDATION
-        $('input').blur(function()
-        {
+        $('input').blur(function(){
             // var chkinp = $(this).attr('id');
             if( $(this).val().length === 0) 
             {
@@ -45,6 +46,19 @@
             }
         });
         // / NULL VALIDATION
+        
+        // ONLY LETTERS VALIDATION
+//        $("p.onlytext").keypress(function(){
+//            var valtext = $(this).val();
+//            var viptext  = /^[a-z\u00C0-\u00ff\s]+$/;
+//            var resultval = viptext.test(valtext);
+//            if(resultval false)
+//            {
+//                $(this).closest('div').addClass('has-error');
+//            }
+//        });
+        // / ONLY LETTERS VALIDATION
+        
         // SENDING WITH AJAX
         $("#insusrdata").click(function(){
             var btninsusrdata = $(this).val(); // INSERTED BTN *

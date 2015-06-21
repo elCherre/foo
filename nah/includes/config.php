@@ -1,4 +1,4 @@
 <?php
-$conusr = "root";
-$conpass = "";
+    $conusr = "root";
+    $conpass = "";
 ?>
