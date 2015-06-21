@@ -1,0 +1,4 @@
+<?php
+$conusr = "root";
+$conpass = "";
+?>
