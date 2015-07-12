@@ -1,0 +1,15 @@
+<select name="name" id="lel" onchange="cambiarTexto()">
+    <option value="1">opcion1</option>
+    <option value="2">opcion2</option>
+</select>
+<!--Texto a cambiar-->
+<p id="texto">
+</p>
+<!--javascript empieza aqui-->
+<script>
+function cambiarTexto() {
+// se declara la variable con el valor del select por medio de su ID
+var valor = document.getElementById('lel').value;
+document.getElementById('texto').innerHTML = "usted escogio: " + valor;
+}
+</script>
