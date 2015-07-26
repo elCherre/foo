@@ -1,15 +1,15 @@
 <?php
     $currentlang = "es";
-    include_once "nah/includes/lang/lang.php";
+    include_once "assets/includes/lang/lang.php";
 ?>
 <!doctype html>
 <html>
 
 <head>
     <title>Line Chart with Custom Tooltips</title>
-    <script src="nah/js/Chart.Core.js"></script>
-    <script src="nah/js/Chart.Line.js"></script>
-    <script src="nah/js/jquery-2.1.4.js"></script>
+    <script src="assets/js/Chart.Core.js"></script>
+    <script src="assets/js/Chart.Line.js"></script>
+    <script src="assets/js/jquery-2.1.4.js"></script>
 
     <style>
     #canvas-holder1 {

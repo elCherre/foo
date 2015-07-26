@@ -5,7 +5,7 @@
     <title>Index</title>
     <!-- CSS -->
     <?php 
-        include "nah/includes/css.php";
+        include "assets/includes/css.php";
     ?>
     <!-- CSS -->
 </head>
@@ -20,7 +20,7 @@
     ?>
     <!-- JAVASCRIPT -->
     <?php 
-        include "nah/includes/js.php";
+        include "assets/includes/js.php";
     ?>
     <script>
     $(function(){

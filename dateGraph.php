@@ -1,5 +1,5 @@
 <?php 
-include "nah/includes/iconexion.php";
+include "assets/includes/iconexion.php";
 if(isset($_GET["ago"]))
 {
     $dayto = $_GET['ago'];
@@ -75,8 +75,8 @@ else
 			</div>
 		</div>
 
-    <script src="nah/js/Chart.Core.js"></script>
-    <script src="nah/js/Chart.Line.js"></script>
+    <script src="assets/js/Chart.Core.js"></script>
+    <script src="assets/js/Chart.Line.js"></script>
 	<script>
 		var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
 		<?php
