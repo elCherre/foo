@@ -6,7 +6,7 @@
     <title>Index</title>
     <!-- CSS -->
     <?php 
-        include "nah/includes/css.php";
+        include "assets/includes/css.php";
     ?>
     <!-- CSS -->
 </head>
@@ -15,6 +15,7 @@
     <div class="jumbotron">
     <div class="row">
         <h3>AJAX form</h3>
+        <div id="process-msg"></div>
         <form action="/" method="post">
             <div class="form-group">
                 <label for="insname">Your name</label>
@@ -29,7 +30,7 @@
         </form>
         <!-- JAVASCRIPT -->
         <?php 
-            include "nah/includes/js.php";
+            include "assets/includes/js.php";
         ?>
     </div>
     </div>
@@ -38,26 +39,22 @@
     $(function(){
         // NULL VALIDATION
         $('input').blur(function(){
-            // var chkinp = $(this).attr('id');
-            if( $(this).val().length === 0) 
+            if( $(this).val() == "") 
             {
+                $(this).closest('div').removeClass('has-success');
+                $(this).closest('label').removeClass('text-success');
                 $(this).closest('div').addClass('has-error');
                 $(this).closest('label').addClass('text-danger');
             }
+            else
+            {
+                $(this).closest('div').removeClass('has-error');
+                $(this).closest('label').removeClass('text-danger');
+                $(this).closest('div').addClass('has-success');
+                $(this).closest('label').addClass('text-success');
+            }
         });
         // / NULL VALIDATION
-        
-        // ONLY LETTERS VALIDATION
-//        $("p.onlytext").keypress(function(){
-//            var valtext = $(this).val();
-//            var viptext  = /^[a-z\u00C0-\u00ff\s]+$/;
-//            var resultval = viptext.test(valtext);
-//            if(resultval false)
-//            {
-//                $(this).closest('div').addClass('has-error');
-//            }
-//        });
-        // / ONLY LETTERS VALIDATION
         
         // SENDING WITH AJAX
         $("#insusrdata").click(function(){
@@ -74,7 +71,7 @@
             {
                 $.ajax({
                     method: "POST",
-                    url: "form_process.php",
+                    url: "assets/includes/ajax/form_process.php",
                     data: {
                         btninsusrdata: btninsusrdata,  // INSERTED BTN *
                         name: insname,                  // OTHER VALUES ...
@@ -85,7 +82,9 @@
                     },
                     success: function(data) {
                         // RESULTS...
-                        bootbox.alert({ title: "<h4>Results</h4>" , message: data });
+                        document.getElementById('process-msg').innerHTML = data; // PRINT "ECHO" MESSAGE
+                        $("#insname").val(""); // CLEANING INPUT VALUES ...
+                        $("#inssurname").val("");
                     }
                 });
             }
