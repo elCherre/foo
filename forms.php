@@ -62,7 +62,7 @@
         // / NULL VALIDATION
         
         // WATCHING IF THE USER ALREADY EXIST
-        $('.username').keyup(function(){
+        $('.username').blur(function(){
             var newusername = $(this).val();
             $.ajax({
                 method: "POST",
@@ -114,6 +114,9 @@
                         $("#inssurname").val("");
                         $("#insusername").val("");
                         $("#already").html("");
+                        document.getElementById('already').innerHTML = "";
+                        $('div').removeClass('has-success');
+                        $('label').removeClass('text-success');
                     }
                 });
             }
