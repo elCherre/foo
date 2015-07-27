@@ -25,6 +25,11 @@
                 <label for="inssurname">Your surname</label>
                 <input type="text" class="form-control" id="inssurname" placeholder="Your surname">
             </div>
+            <div class="form-group">
+                <label for="insusername">Create an username</label>
+                <input type="text" class="form-control username" id="insusername" placeholder="Your surname">
+                <div id="already"></div>
+            </div>
             
             <button type="button" class="btn btn-success" id="insusrdata">Save my data</button>
         </form>
@@ -56,14 +61,35 @@
         });
         // / NULL VALIDATION
         
+        // WATCHING IF THE USER ALREADY EXIST
+        $('.username').keyup(function(){
+            var newusername = $(this).val();
+            $.ajax({
+                method: "POST",
+                url: "assets/includes/ajax/created-username.php",
+                data: {
+                    newusername: newusername // INSERTED BTN *
+                },
+                beforeSend: function() { // OPTIONAL
+                    // SENDING...
+                },
+                success: function(data) {
+                    // RESULTS...
+                    document.getElementById('already').innerHTML = data; // PRINT "ECHO" MESSAGE
+                }
+            });
+        });
+        // / WATCHING IF THE USER ALREADY EXIST
+        
         // SENDING WITH AJAX
         $("#insusrdata").click(function(){
             var btninsusrdata = $(this).val(); // INSERTED BTN *
             var btninst = $(this).text();
             var insname = $("#insname").val();          // OTHER VALUES ...
             var inssurname = $("#inssurname").val();
+            var insusername = $("#insusername").val();
             
-            if(insname == "" || inssurname == "") // NULL VALIDATION
+            if(insname == "" || inssurname == "" || insusername == "") // NULL VALIDATION
             {
                 bootbox.alert({ title: "<h4 class='text-danger'>Error: You do not complete all the form</h4>" , message: "<p>Please fill all the fields!</p>" });
             }
@@ -75,7 +101,8 @@
                     data: {
                         btninsusrdata: btninsusrdata,  // INSERTED BTN *
                         name: insname,                  // OTHER VALUES ...
-                        surname: inssurname
+                        surname: inssurname,
+                        username: insusername
                     },
                     beforeSend: function() { // OPTIONAL
                         // SENDING...
@@ -85,6 +112,8 @@
                         document.getElementById('process-msg').innerHTML = data; // PRINT "ECHO" MESSAGE
                         $("#insname").val(""); // CLEANING INPUT VALUES ...
                         $("#inssurname").val("");
+                        $("#insusername").val("");
+                        $("#already").html("");
                     }
                 });
             }

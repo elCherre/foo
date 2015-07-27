@@ -1,17 +1,21 @@
 <?php
-if(isset($_POST["btninsusrdata"]) && isset($_POST["name"]) && isset($_POST["surname"]))
+if(isset($_POST["btninsusrdata"]) && isset($_POST["name"]) && isset($_POST["surname"]) && isset($_POST["username"]))
 {
     include "../pdo-conexion.php";
     
     $name = $_POST["name"];
     $surname = $_POST["surname"];
+    $username = $_POST["username"];
+    $date = date('Y-m-d');
     
     try
     {
-        $stmt = $conexion->prepare("INSERT INTO user (name, surname)
-        VALUES (:name, :surname)");
+        $stmt = $conexion->prepare("INSERT INTO user (name, surname, username, date)
+        VALUES (:name, :surname, :username, :date)");
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':surname', $surname);
+        $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':date', $date);
 
         $stmt->execute();
 
