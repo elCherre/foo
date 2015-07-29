@@ -61,23 +61,41 @@
         });
         // / NULL VALIDATION
         
+        // VALIDATIONS VARIABLES
+        var valerror = false;
+        var typeerror = 0;
+        var msgerror = "";
+        // / VALIDATIONS VARIABLES
+        
         // WATCHING IF THE USER ALREADY EXIST
         $('.username').blur(function(){
             var newusername = $(this).val();
-            $.ajax({
-                method: "POST",
-                url: "assets/includes/ajax/created-username.php",
-                data: {
-                    newusername: newusername // INSERTED BTN *
-                },
-                beforeSend: function() { // OPTIONAL
-                    // SENDING...
-                },
-                success: function(data) {
-                    // RESULTS...
-                    document.getElementById('already').innerHTML = data; // PRINT "ECHO" MESSAGE
-                }
-            });
+            if(newusername != "")
+            {
+                $.ajax({
+                    method: "POST",
+                    url: "assets/includes/ajax/created-username.php",
+                    data: {
+                        newusername: newusername // INSERTED BTN *
+                    },
+                    beforeSend: function() { // OPTIONAL
+                        // SENDING...
+                    },
+                    success: function(data) {
+                        // RESULTS...
+                        if(data == 1)
+                        {
+                            document.getElementById('already').innerHTML = "<small class='text-danger nope-notice'><i class='fa fa-exclamation-triangle'></i> This username already exist</small>"; // PRINT "ECHO" MESSAGE
+                            valerror = true;
+                        }
+                        else
+                        {
+                            document.getElementById('already').innerHTML = "<small class='text-success yeah-notice'><i class='fa fa-check'></i> Good username!</small>"; // PRINT "ECHO" MESSAGE
+                            valerror = false;
+                        }
+                    }
+                });
+            }
         });
         // / WATCHING IF THE USER ALREADY EXIST
         
@@ -91,34 +109,47 @@
             
             if(insname == "" || inssurname == "" || insusername == "") // NULL VALIDATION
             {
-                bootbox.alert({ title: "<h4 class='text-danger'>Error: You do not complete all the form</h4>" , message: "<p>Please fill all the fields!</p>" });
+                bootbox.alert({
+                    title: "<h4 class='text-danger'>Error: You do not complete all the form</h4>" , 
+                    message: "<p>Please fill all the fields!</p>" 
+                });
             }
             else
             {
-                $.ajax({
-                    method: "POST",
-                    url: "assets/includes/ajax/form_process.php",
-                    data: {
-                        btninsusrdata: btninsusrdata,  // INSERTED BTN *
-                        name: insname,                  // OTHER VALUES ...
-                        surname: inssurname,
-                        username: insusername
-                    },
-                    beforeSend: function() { // OPTIONAL
-                        // SENDING...
-                    },
-                    success: function(data) {
-                        // RESULTS...
-                        document.getElementById('process-msg').innerHTML = data; // PRINT "ECHO" MESSAGE
-                        $("#insname").val(""); // CLEANING INPUT VALUES ...
-                        $("#inssurname").val("");
-                        $("#insusername").val("");
-                        $("#already").html("");
-                        document.getElementById('already').innerHTML = "";
-                        $('div').removeClass('has-success');
-                        $('label').removeClass('text-success');
-                    }
-                });
+                if(valerror == true)
+                {
+                    bootbox.alert({
+                        title: "<h4 class='text-danger'>Error: This user already exist</h4>" , 
+                        message: "<p>Please create a more creative user!</p>" 
+                    });   
+                }
+                else
+                {
+                    $.ajax({
+                        method: "POST",
+                        url: "assets/includes/ajax/form_process.php",
+                        data: {
+                            btninsusrdata: btninsusrdata,  // INSERTED BTN *
+                            name: insname,                  // OTHER VALUES ...
+                            surname: inssurname,
+                            username: insusername
+                        },
+                        beforeSend: function() { // OPTIONAL
+                            // SENDING...
+                        },
+                        success: function(data) {
+                            // RESULTS...
+                            document.getElementById('process-msg').innerHTML = data; // PRINT "ECHO" MESSAGE
+                            $("#insname").val(""); // CLEANING INPUT VALUES ...
+                            $("#inssurname").val("");
+                            $("#insusername").val("");
+                            $("#already").html("");
+                            document.getElementById('already').innerHTML = "";
+                            $('div').removeClass('has-success');
+                            $('label').removeClass('text-success');
+                        }
+                    });
+                }
             }
         });
         // / SENDING WITH AJAX

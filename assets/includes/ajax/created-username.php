@@ -8,11 +8,13 @@ if(isset($_POST["newusername"]))
     $stmt = $mysqli->query("SELECT username FROM user WHERE username = '$newusername'");
     if ($stmt->num_rows > 0) 
     {
-        echo "<small class='text-danger nope-notice'><i class='fa fa-exclamation-triangle'></i> This username already exist</small>";
+        echo 1;
+        //echo "<small class='text-danger nope-notice'><i class='fa fa-exclamation-triangle'></i> This username already exist</small>";
     }
     else
     {
-        echo "<small class='text-success yeah-notice'><i class='fa fa-check'></i> Good username!</small>";
+        echo 0;
+        //echo "<small class='text-success yeah-notice'><i class='fa fa-check'></i> Good username!</small>";
     }
 }
 else
