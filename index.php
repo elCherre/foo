@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+    <!--
+    Cherre had made dis
+    -->
 <head>
     <meta charset="utf-8" />
     <title>Index</title>
@@ -10,22 +13,89 @@
     <!-- CSS -->
 </head>
 <body>
-    <?php
-        $x = 1;
-        while($x < 10)
-        {
-            echo "<p>Ninja ".$x." <i class='fa fa-eye'></i></p>";
-            $x++;
-        }
-    ?>
+    <style>
+    .hidden-menu{
+        width: 50px;
+        height: 50px;
+        border: 1px solid #3498db;
+        border-radius: 5%;
+        background-color: #fff;
+
+        color: #3498db;
+        text-align: center;
+
+        position: fixed;
+        left: 15px;
+        top: 15px;
+        z-index: 10;
+    }
+    .hidden-menu:hover,
+    .hidden-menu:active{
+        background-color: #369fe5;
+        cursor: pointer;
+        color: #fff;
+        transition-duration: 1s;
+        transition-timing-function: ease-out;
+        -webkit-transition-duration: 1s;
+        -webkit-transition-timing-function: ease-out;   
+        -moz-transition-duration: 1s;
+        -moz-transition-timing-function: ease-out;   
+    }
+    .hidden-menu:active{
+        
+    }
+    .wow-menu{
+        width: 0%;
+        height: 0%;
+        margin: 15px;
+        
+        border: 1px solid #3498db;
+        border-radius: 2px;
+        background-color: #369fe5;
+
+        color: #fff;
+        
+        z-index: 9;
+        display: none;
+        position: fixed; 
+    }
+    </style>
+    <button class="hidden-menu appearplz"><i class="fa fa-bars "></i></button>
+    <div class="wow-menu" currentstatus="nop">
+        lel
+    </div>
     <!-- JAVASCRIPT -->
     <?php 
         include "assets/includes/js.php";
     ?>
     <script>
-    $(function(){
-        $("p").click(function(){
-            $(this).hide();
+    $(document).ready(function() {
+        $(".appearplz").click(function() {
+            var currentstatus = $(".wow-menu").attr("currentstatus");
+            if(currentstatus == "nop")
+            {
+                $(".wow-menu").css('display', 'block');
+                $(".wow-menu").attr("currentstatus", "sip");
+                
+                $(".wow-menu").animate({
+                    width: "400px",
+                    height: "400px"
+                }, 1000);
+                $(this).css("border","0px");
+            }
+            else
+            {
+                $(".wow-menu").animate({
+                    width: "0",
+                    height: "0"
+                }, 500);
+                
+                $(".wow-menu").css('display', 'none');
+                $(".wow-menu").attr("currentstatus", "nop");
+                
+                $(this).css("border","1px solid #3498db");
+
+            }
         });
     });
     </script>
