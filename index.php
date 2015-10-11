@@ -18,7 +18,6 @@
         width: 50px;
         height: 50px;
         border: 1px solid #3498db;
-        border-radius: 5%;
         background-color: #fff;
 
         color: #3498db;
@@ -37,12 +36,7 @@
         transition-duration: 1s;
         transition-timing-function: ease-out;
         -webkit-transition-duration: 1s;
-        -webkit-transition-timing-function: ease-out;   
-        -moz-transition-duration: 1s;
-        -moz-transition-timing-function: ease-out;   
-    }
-    .hidden-menu:active{
-        
+        -webkit-transition-timing-function: ease-out;
     }
     .wow-menu{
         width: 0%;
@@ -50,7 +44,6 @@
         margin: 15px;
         
         border: 1px solid #3498db;
-        border-radius: 2px;
         background-color: #369fe5;
 
         color: #fff;
@@ -59,10 +52,13 @@
         display: none;
         position: fixed; 
     }
+    h1{
+        display: inherit;
+    }
     </style>
-    <button class="hidden-menu appearplz"><i class="fa fa-bars "></i></button>
+    <button class="hidden-menu appearplz fa fa-bars"></button>
     <div class="wow-menu" currentstatus="nop">
-        lel
+<!--        <h1 class="text-center">rg erg th rth</h1>-->
     </div>
     <!-- JAVASCRIPT -->
     <?php 
@@ -71,7 +67,9 @@
     <script>
     $(document).ready(function() {
         $(".appearplz").click(function() {
+            
             var currentstatus = $(".wow-menu").attr("currentstatus");
+            
             if(currentstatus == "nop")
             {
                 $(".wow-menu").css('display', 'block');
@@ -81,19 +79,24 @@
                     width: "400px",
                     height: "400px"
                 }, 1000);
+                
                 $(this).css("border","0px");
+                $(this).removeClass("fa-bars");
+                $(this).addClass("fa-times");
             }
             else
             {
                 $(".wow-menu").animate({
                     width: "0",
-                    height: "0"
+                    height: "0",
+                    display: "none"
                 }, 500);
                 
-                $(".wow-menu").css('display', 'none');
                 $(".wow-menu").attr("currentstatus", "nop");
                 
                 $(this).css("border","1px solid #3498db");
+                $(this).removeClass("fa-times");
+                $(this).addClass("fa-bars");
 
             }
         });
