@@ -1,7 +1,7 @@
 <?php
 define("HOST", "localhost");
 define("USER", "root");
-define("PASSWORD", "");
+define("PASSWORD", "1234");
 define("DATABASE", "lel_db");
  
 define("CAN_REGISTER", "any");
