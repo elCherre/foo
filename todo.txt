@@ -1,4 +1,4 @@
-- purge useless docs
++ purge useless docs
 - create new database
 - make new secure PDO connection
 - set new design with Skeleton
