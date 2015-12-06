@@ -1,7 +1,17 @@
 + purge useless docs
+
+# set new design
++ download and add Skeleton to the project
+- choose colours to work
+- change buttons, divs and forms styles
+
+# JS complements
+- design new light modals
+- code AJAX forms
+
+# database and PHP issues
 - create new database
 - make new secure PDO connection
-- set new design with Skeleton
 - code new maintenances with PDO
 - code new super secure login and sign up
 
