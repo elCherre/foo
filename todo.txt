@@ -1,4 +1,5 @@
 + purge useless docs
++ do the same in Windows
 
 # set new design
 + download and add Skeleton to the project
