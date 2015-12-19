@@ -1,16 +1,16 @@
 + purge useless docs
 + do the same in Windows
 
-# set new design
+# new design
 + download and add Skeleton to the project
 - choose colours to work
 - change buttons, divs and forms styles
 
 # JS complements
-- design new light modals
-- code AJAX forms
+- new modals
+- AJAX forms
 
-# database and PHP issues
+# database and PHP
 + create new database
 - make new secure PDO connection
 - code new maintenances with PDO
