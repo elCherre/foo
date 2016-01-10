@@ -14,18 +14,38 @@
     <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="assets/css/skeleton.css">
 
 </head>
 <body>
 
     <div class="container">
         <div class="row">
-            <div class="one-half column" style="margin-top: 25%">
+            <div class="one-half column">
                 <!-- CONTENT -->
-            </div>
+                <div id="popup" class="popup-back">
+                    <div id="popupwrapper">
+                        <div id="popupcontent">
+                        <a href="#" onclick="toggle_visibility('popup');" style="color: red; border-color:red; text-align: right; text-decoration: none">X</a><h1>YES SCIENCE</h1>
+                        </div>
+                        <button onclick="toggle_visibility('popup');">Close</button>
+                    </div>
+                </div>
+                
+                <h1>sdfjbsdf</h1>
+                <button class="button-primary" onclick="toggle_visibility('popup');">Open</button>
+                <!-- /CONTENT -->
+            </div>            
         </div>
     </div>
-
+<script type="text/javascript">
+    function toggle_visibility(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+    }
+</script>
 </body>
 </html>
