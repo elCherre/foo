@@ -7,7 +7,7 @@
 - change buttons, divs and forms styles
 
 # JS complements
-- new modals
++ new modals
 - AJAX forms
 
 # database and PHP
@@ -15,4 +15,7 @@
 - make new secure PDO connection
 - code new maintenances with PDO
 - code new super secure login and sign up
+
+# more things
+- built modals with header and footer
 
