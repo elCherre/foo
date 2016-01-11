@@ -418,8 +418,9 @@ there.
 @media (min-width: 1200px) {}
 
 /* ---MINE UPDATES--- */
+
 /* MODALS */
-.popup-back{
+.modal-back{
     display: none;
     position: fixed;
     top: 0;
@@ -428,14 +429,45 @@ there.
     width: 100%;
     height: 100%
 }
-#popupwrapper{ 
+.modal-wrapper{ 
     width: 700px;
     margin: 70px auto;
-}
-#popupcontent{
     background: #fff;
 }
+.modal-header{
+    
+}
+.modal-content{
+    background: #fff;
+}
+.modal-footer{
+    clear: both;
+}
 /* /MODALS */
+
+/* CLOSE BUTTON */
+.close-this-x{
+    display: table-caption;
+    color: red;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    font-size: 40px;
+    vertical-align: top;
+}
+.close-this-x:hover,
+.close-this-x:active{
+    color: #000;
+}
+/* /CLOSE BUTTON */
+/* PUSH SOMETHING */
+.push-right{
+    float: right; !important
+}
+.push-left{
+    float: left; !important
+}
+/* /PUSH SOMETHING */
 div{
     padding: 10px;
 }
