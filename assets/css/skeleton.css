@@ -435,25 +435,35 @@ there.
     background: #fff;
 }
 .modal-header{
-    
+    position: relative;
+    border-bottom: 1px solid #000;
+}
+.modal-header .close-this-x{
+    margin-top: -2;
 }
 .modal-content{
     background: #fff;
 }
 .modal-footer{
-    clear: both;
+    padding: 15px;
+    text-align: right;
+    border-top: 1px solid #000;
+}
+button.modal-footer{
+    margin-bottom: 10px;
 }
 /* /MODALS */
 
 /* CLOSE BUTTON */
 .close-this-x{
-    display: table-caption;
     color: red;
     text-decoration: none;
-    margin: 0;
-    padding: 0;
-    font-size: 40px;
-    vertical-align: top;
+    font-size: 50px;
+    line-height: 1;
+    float: right;
+    top: 5px;
+    right: 5px;
+    position: absolute;
 }
 .close-this-x:hover,
 .close-this-x:active{
@@ -469,5 +479,6 @@ there.
 }
 /* /PUSH SOMETHING */
 div{
-    padding: 10px;
+    padding: 10px; !important
+    margin: 10px; !important
 }
