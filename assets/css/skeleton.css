@@ -339,7 +339,8 @@ td:last-child {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 button,
 .button {
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem;
+}
 input,
 textarea,
 select,
@@ -448,9 +449,6 @@ there.
     padding: 15px;
     text-align: right;
     border-top: 1px solid #000;
-}
-button.modal-footer{
-    margin-bottom: 10px;
 }
 /* /MODALS */
 
