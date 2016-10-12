@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    
+    <title>Formulario 1 - Guardar</title>
+</head>
+<body>
+<div class="container">
+    <div class="row well">
+        <h3>Formulario 1 - Guardar</h3>
+        <hr>
+        
+        <form method="post" action="assets/php/guardar1.php">
+        <div class="form-group">
+            <label for="rName">Nombre:</label>
+            <input name="rName" id="rName" type="text" class="form-control">
+        </div>
+        <div class="radio-inline">
+            <label><input name="rType" id="rType1" type="radio" value="1"> Server</label>
+        </div>
+        <div class="radio-inline">
+            <label><input name="rType" id="rType2" type="radio" value="2"> PC</label>            
+        </div>
+        <div class="form-group">
+            <label for="rTime">Fecha y hora:</label>
+            <input name="rTime" id="rTime" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="rURL">URL:</label>
+            <input name="rURL" id="rURL" type="text" class="form-control">
+        </div>
+        
+        <input type="submit" value="Guardar" class="btn btn-primary">
+        </form>
+    </div>
+</div>
+</body>
+</html>
