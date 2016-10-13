@@ -1,7 +1,11 @@
 <?php
-require_once "lang/es.php";
+require_once "lang/en.php";
+require_once "function.php";
 
-if(empty($_POST["rName"]) or empty($_POST["rType"]) or empty($_POST["rTime"]) or empty($_POST["rURL"]))
+// $_SERVER["REQUEST_METHOD"] == "POST" #validate if post method was used
+if(empty($_POST["rName"]) or empty($_POST["rType"]) or empty($_POST["rTime"]) or empty($_POST["rURL"]) # check if vars are empty
+   or !validateDate($_POST["rTime"], "Y-m-d H:i:s") # check if date is correct with personal function
+   or !ctype_digit($_POST["rType"]) or (($_POST["rType"] < 1) or ($_POST["rType"] > 2))) # check if type is INT and if is 1 or 2
 {
     die($printLang["db-error-null"]);
 }
@@ -18,10 +22,10 @@ try
     $sql -> bindParam(':shift', $rShift);
     $sql -> bindParam(':url', $rURL);
 
-    $rName = $_POST["rName"];
+    $rName = safeInput($_POST["rName"]); # making text safer quitting special characters
     $rType = $_POST["rType"];
     $rTime = $_POST["rTime"];
-    $rShift = date("A", strtotime($_POST["rTime"]));
+    $rShift = date("A", strtotime($_POST["rTime"])); # generating value for shift (AM or PM)
     $rURL = $_POST["rURL"];
 
     $sql -> execute();
@@ -30,8 +34,9 @@ try
 }
 catch(PDOException $e)
 {
-    echo $printLang["db-error-save"] ." - ". $e -> getMessage();
+    echo $printLang["db-error-save"] ." - ". $e -> getMessage(); # replace this on production
+    //echo $printLang["db-error-save"];
 }
 
-    $dbconnect = null; // cerrar conexion
+    $dbconnect = null; # cerrar conexion
 ?>
