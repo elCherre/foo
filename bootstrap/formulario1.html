@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     
     <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.css" rel="stylesheet">
     
     <title>Formulario 1 - Guardar</title>
 </head>
@@ -13,17 +14,18 @@
     <div class="row well">
         <h3>Formulario 1 - Guardar</h3>
         <hr>
-        
+        <div id="results"></div>
         <form method="post" action="assets/php/guardar1.php">
+        <fieldset id="rForm">
         <div class="form-group">
             <label for="rName">Nombre:</label>
             <input name="rName" id="rName" type="text" class="form-control">
         </div>
         <div class="radio-inline">
-            <label><input name="rType" id="rType1" type="radio" value="1"> Server</label>
+            <label><input name="rType" id="rType1" class="radioselect" type="radio" value="1"> Server</label>
         </div>
         <div class="radio-inline">
-            <label><input name="rType" id="rType2" type="radio" value="2"> PC</label>            
+            <label><input name="rType" id="rType2" class="radioselect" type="radio" value="2"> PC</label>            
         </div>
         <div class="form-group">
             <label for="rTime">Fecha y hora:</label>
@@ -34,9 +36,59 @@
             <input name="rURL" id="rURL" type="text" class="form-control">
         </div>
         
-        <input type="submit" value="Guardar" class="btn btn-primary">
+        <!--<input type="submit" value="Guardar" class="btn btn-primary">-->
+        <button type="button" class="btn btn-primary" id="btnInsert">Save my data</button>
+        </fieldset>
         </form>
     </div>
 </div>
+<!-- -->
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script>
+$(function() {
+    $("#btnInsert").click(function() {
+        // input variables
+        var rName = $("#rName").val();
+        var rType = $(".radioselect:checked").val();
+        var rTime = $("#rTime").val();
+        var rURL = $("#rURL").val();
+        
+        $.ajax({
+            method: "POST",
+            url: "assets/php/guardar1.php",
+            data: {
+                rName: rName,
+                rType: rType,
+                rTime: rTime,
+                rURL: rURL
+            },
+            beforeSend: function() {
+                $("#btnInsert").attr('disabled', true).html("<i class='fa fa-circle-o-notch fa-spin fa-fw'></i> Sending...");
+                setTimeout(function(){
+                    $("#btnInsert").attr('disabled', false);
+                }, 1000);
+            },
+            success: function(phpResponse) {
+                var obj = jQuery.parseJSON( phpResponse );
+                
+                if(obj.isError == "yes")
+                {
+                    $("#results").html(obj.message).addClass("alert alert-dismissible alert-danger").removeClass("alert-success");
+                }
+                else
+                {
+                    $("#results").html(obj.message).addClass("alert alert-dismissible alert-success").removeClass("alert-danger");
+                }
+                
+                $("#rName").val(""); // clear the input
+                $(".radioselect:checked").prop('checked', false); // uncheck the radiobutton
+                $("#rTime").val("");
+                $("#rURL").val("");
+            }
+        });
+    });
+});
+</script>
 </body>
 </html>
