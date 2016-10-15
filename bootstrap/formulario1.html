@@ -37,7 +37,7 @@
         </div>
         
         <!--<input type="submit" value="Guardar" class="btn btn-primary">-->
-        <button type="button" class="btn btn-primary" id="btnInsert">Save my data</button>
+        <button type="button" class="btn btn-primary" id="btnInsert"><i class='fa fa-floppy-o' aria-hidden='true'></i> Save</button>
         </fieldset>
         </form>
     </div>
@@ -45,6 +45,7 @@
 <!-- -->
 <script src="assets/js/jquery.js"></script>
 <script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/function.js"></script>
 <script>
 $(function() {
     $("#btnInsert").click(function() {
@@ -54,40 +55,46 @@ $(function() {
         var rTime = $("#rTime").val();
         var rURL = $("#rURL").val();
         
-        $.ajax({
-            method: "POST",
-            url: "assets/php/guardar1.php",
-            data: {
-                rName: rName,
-                rType: rType,
-                rTime: rTime,
-                rURL: rURL
-            },
-            beforeSend: function() {
-                $("#btnInsert").attr('disabled', true).html("<i class='fa fa-circle-o-notch fa-spin fa-fw'></i> Sending...");
-                setTimeout(function(){
-                    $("#btnInsert").attr('disabled', false);
-                }, 1000);
-            },
-            success: function(phpResponse) {
-                var obj = jQuery.parseJSON( phpResponse );
-                
-                if(obj.isError == "yes")
-                {
-                    $("#results").html(obj.message).addClass("alert alert-dismissible alert-danger").removeClass("alert-success");
-                }
-                else
-                {
-                    $("#results").html(obj.message).addClass("alert alert-dismissible alert-success").removeClass("alert-danger");
-                }
-                
-                $("#rName").val(""); // clear the input
-                $(".radioselect:checked").prop('checked', false); // uncheck the radiobutton
-                $("#rTime").val("");
-                $("#rURL").val("");
-            }
-        });
+        var saveThis = new Array(rName, rType, rTime, rURL);
+        
+//        $.ajax({
+//            method: "POST",
+//            url: "assets/php/guardar1.php",
+//            data: {
+//                rName: rName,
+//                rType: rType,
+//                rTime: rTime,
+//                rURL: rURL
+//            },
+//            beforeSend: function() {
+//                $("#btnInsert").attr('disabled', true).html("<i class='fa fa-circle-o-notch fa-spin fa-fw'></i> Sending...");
+//            },
+//            success: function(phpResponse) {
+//                var obj = jQuery.parseJSON( phpResponse );
+//                
+//                afterThePHPResponse(obj.isError, obj.message);
+//                
+//                $("#rName").val(""); // clear the input
+//                $(".radioselect:checked").prop('checked', false); // uncheck the radiobutton
+//                $("#rTime").val("");
+//                $("#rURL").val("");
+//            }
+//        });
+        sendThroughAJAX(saveThis);
     });
+    function afterThePHPResponse(isError, message) {
+        setTimeout(function(){
+            if(isError == "yes")
+            {
+                $("#results").html("<div class='alert alert-danger alert-dismissible' role='alert'> <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button> <strong>Error: </strong>"+ message +"</div>");
+            }
+            else
+            {
+                $("#results").html("<div class='alert alert-success alert-dismissible' role='alert'> <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button> <strong>OK: </strong>"+ message +"</div>");
+            }
+            $("#btnInsert").attr('disabled', false).html("<i class='fa fa-floppy-o' aria-hidden='true'></i> Save");
+        }, 1500);
+    }
 });
 </script>
 </body>
