@@ -2,12 +2,10 @@
 require_once "lang/en.php";
 require_once "function.php";
 
-$finalMessage = array("message" => "", "isError" => "");
-
 // $_SERVER["REQUEST_METHOD"] == "POST" #validate if post method was used
 if(empty($_POST["rName"]) or empty($_POST["rType"]) or empty($_POST["rTime"]) or empty($_POST["rURL"]) # check if vars are empty
-   or !validateDate($_POST["rTime"], "Y-m-d H:i:s") # check if date is correct with personal function
-   or !ctype_digit($_POST["rType"]) or (($_POST["rType"] < 1) or ($_POST["rType"] > 2))) # check if type is INT and if is 1 or 2
+or !validateDate($_POST["rTime"], "Y-m-d H:i:s") # check if date is correct with personal function
+or !ctype_digit($_POST["rType"]) or (($_POST["rType"] < 1) or ($_POST["rType"] > 2))) # check if type is INT and if is 1 or 2
 {
     die(json_encode(array("message" => $printLang["db-error-null"], "isError" => "yes")));
 }

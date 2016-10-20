@@ -19,21 +19,21 @@
         <fieldset id="rForm">
         <div class="form-group">
             <label for="rName">Nombre:</label>
-            <input name="rName" id="rName" type="text" class="form-control">
+            <input name="rName" id="rName" type="text" class="form-control my-input">
         </div>
         <div class="radio-inline">
-            <label><input name="rType" id="rType1" class="radioselect" type="radio" value="1"> Server</label>
+            <label><input name="rType" id="rType1" class="radioselect my-input" type="radio" value="1"> Server</label>
         </div>
         <div class="radio-inline">
-            <label><input name="rType" id="rType2" class="radioselect" type="radio" value="2"> PC</label>            
+            <label><input name="rType" id="rType2" class="radioselect my-input" type="radio" value="2"> PC</label>            
         </div>
         <div class="form-group">
             <label for="rTime">Fecha y hora:</label>
-            <input name="rTime" id="rTime" type="text" class="form-control">
+            <input name="rTime" id="rTime" type="text" class="form-control my-input">
         </div>
         <div class="form-group">
             <label for="rURL">URL:</label>
-            <input name="rURL" id="rURL" type="text" class="form-control">
+            <input name="rURL" id="rURL" type="text" class="form-control my-input">
         </div>
         
         <!--<input type="submit" value="Guardar" class="btn btn-primary">-->
@@ -54,8 +54,9 @@ $(function() {
         var rType = $(".radioselect:checked").val();
         var rTime = $("#rTime").val();
         var rURL = $("#rURL").val();
+        var theButton = $("#btnInsert").attr("id");
         
-        var saveThis = new Array(rName, rType, rTime, rURL);
+        sendReportAJAX(rName, rType, rTime, rURL, theButton);
         
 //        $.ajax({
 //            method: "POST",
@@ -80,21 +81,7 @@ $(function() {
 //                $("#rURL").val("");
 //            }
 //        });
-        sendThroughAJAX(saveThis);
     });
-    function afterThePHPResponse(isError, message) {
-        setTimeout(function(){
-            if(isError == "yes")
-            {
-                $("#results").html("<div class='alert alert-danger alert-dismissible' role='alert'> <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button> <strong>Error: </strong>"+ message +"</div>");
-            }
-            else
-            {
-                $("#results").html("<div class='alert alert-success alert-dismissible' role='alert'> <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button> <strong>OK: </strong>"+ message +"</div>");
-            }
-            $("#btnInsert").attr('disabled', false).html("<i class='fa fa-floppy-o' aria-hidden='true'></i> Save");
-        }, 1500);
-    }
 });
 </script>
 </body>
